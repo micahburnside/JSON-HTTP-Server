@@ -10,7 +10,7 @@ A simple HTTP server that serves JSON data from a selected file.
 
 ### Installing
 
-1. Clone the repository: git clone https://github.com/your_username/your_repository.git
+1. Clone the repository: git clone https://github.com/micahburnside/JSON-HTTP-Server.git
 2. Open the terminal or command prompt and navigate to the directory where the program is saved.
 `cd "project file path"`
 3. Run the program by entering the following command: `python3 csv_to_json_converter.py`
