@@ -1,6 +1,7 @@
 import json
 import http.server
 import socketserver
+import urllib.parse
 import tkinter as tk
 from tkinter import filedialog
 import threading
@@ -9,6 +10,10 @@ import threading
 class JSONHandler(http.server.BaseHTTPRequestHandler):
     # This method is called when a GET request is received
     def do_GET(self):
+        # Parse the query string to get the value of the 'query' parameter
+        parsed_query = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+        query_term = parsed_query.get('query', [''])[0]
+
         # Check if a JSON file has been selected
         if not selected_file_path:
             # If no JSON file is selected, send a 500 error response
@@ -25,14 +30,19 @@ class JSONHandler(http.server.BaseHTTPRequestHandler):
             with open(selected_file_path) as f:
                 data = json.load(f)
 
+            # Filter data by query term
+            filtered_data = [record for record in data if query_term in record.values()]
+
             # Send prettified JSON data as response
-            response_data = json.dumps(data, indent=4)
+            response_data = json.dumps(filtered_data, indent=4)
             self.wfile.write(response_data.encode())
 
         except Exception as e:
             # If an error occurs while processing the request, send a 500 error response
             self.send_error(500, str(e))
             return
+
+
 
 # This function starts the HTTP server and listens for incoming requests
 def start_server():
