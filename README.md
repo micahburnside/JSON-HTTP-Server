@@ -1,6 +1,6 @@
 # JSON API Server
 
-A simple HTTP server that serves JSON data from a selected file.
+A simple locally hosted HTTP server that serves JSON data from a JSON file.
 
 ## Getting Started
 
@@ -24,6 +24,12 @@ A simple HTTP server that serves JSON data from a selected file.
 4. Click the "Start Server" button to start serving the JSON data.
 5. Use a web browser or an HTTP client to make a GET request to `http://localhost:8000` to retrieve the JSON data.
 6. Click the "Stop Server" button to stop serving the JSON data.
+
+### Queries / Web Browser
+
+To query the API from a web browser, the paramater is `?query`, pass in any value. Queries are case sensitive.
+Example: If you have a JSON document that contains fruit names and you wanted to get all the records that contain a certain word, add "=", and then the search term. "Banana". The query would look like this in a web browser `http://localhost:8000?query=Banana`
+
 
 ## License
 
